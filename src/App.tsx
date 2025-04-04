@@ -161,7 +161,7 @@ function App() {
           <div className="mb-16">
             <h3 className="text-2xl font-semibold text-gray-800 mb-6">Video Editing</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Self-hosted Video 1 */}
+              {/* Video Project 1 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
                 <div className="relative pb-[56.25%]">
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -169,15 +169,14 @@ function App() {
                       <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
                     </div>
                   </div>
-                  <video 
-                    controls 
+                  <iframe 
                     className="absolute top-0 left-0 w-full h-full"
-                    poster="/images/thumbnails/video1-thumbnail.jpg"
-                    preload="metadata"
-                  >
-                    <source src="/videos/video1.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3"
+                    title="Promotional Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
                 </div>
                 <div className="p-4">
                   <h4 className="text-lg font-semibold text-gray-800">Promotional Video</h4>
@@ -185,7 +184,7 @@ function App() {
                 </div>
               </div>
 
-              {/* Self-hosted Video 2 */}
+              {/* Video Project 2 */}
               <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
                 <div className="relative pb-[56.25%]">
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
@@ -193,15 +192,14 @@ function App() {
                       <div className="w-12 h-12 bg-gray-200 rounded-full"></div>
                     </div>
                   </div>
-                  <video 
-                    controls 
+                  <iframe 
                     className="absolute top-0 left-0 w-full h-full"
-                    poster="/images/thumbnails/video2-thumbnail.jpg"
-                    preload="metadata"
-                  >
-                    <source src="/videos/video2.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID_4"
+                    title="Social Media Content"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  ></iframe>
                 </div>
                 <div className="p-4">
                   <h4 className="text-lg font-semibold text-gray-800">Social Media Content</h4>

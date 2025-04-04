@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Mrnidhi.github.io/my-port-2",
+  "homepage": "https://mrnidhi.github.io/my-port-2",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

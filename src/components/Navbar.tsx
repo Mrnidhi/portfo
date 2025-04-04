@@ -10,14 +10,15 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <a href="/" className="text-xl font-bold text-gray-800">
-              Your Name
+              Srinidhi Gowda
             </a>
           </div>
           
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="#about" className="text-gray-600 hover:text-gray-900">About</a>
-            <a href="#projects" className="text-gray-600 hover:text-gray-900">Projects</a>
+            <a href="#portfolio" className="text-gray-600 hover:text-gray-900">Portfolio</a>
+            <a href="#experience" className="text-gray-600 hover:text-gray-900">Experience</a>
             <a href="#skills" className="text-gray-600 hover:text-gray-900">Skills</a>
             <a href="#contact" className="text-gray-600 hover:text-gray-900">Contact</a>
           </div>
@@ -39,7 +40,8 @@ const Navbar = () => {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a href="#about" className="block px-3 py-2 text-gray-600 hover:text-gray-900">About</a>
-            <a href="#projects" className="block px-3 py-2 text-gray-600 hover:text-gray-900">Projects</a>
+            <a href="#portfolio" className="block px-3 py-2 text-gray-600 hover:text-gray-900">Portfolio</a>
+            <a href="#experience" className="block px-3 py-2 text-gray-600 hover:text-gray-900">Experience</a>
             <a href="#skills" className="block px-3 py-2 text-gray-600 hover:text-gray-900">Skills</a>
             <a href="#contact" className="block px-3 py-2 text-gray-600 hover:text-gray-900">Contact</a>
           </div>

@@ -169,16 +169,23 @@
         <div id="posterGrid" class="grid-container"></div>
     </section>
 
-    <!-- Video Editing Section -->
-    <section id="video-editing" class="portfolio-section">
-        <h2 class="section-title" data-aos="fade-up">Video Editing</h2>
-        <div class="portfolio-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="wedding">Wedding</button>
-            <button class="filter-btn" data-filter="event">Event</button>
-            <button class="filter-btn" data-filter="commercial">Commercial</button>
+    <!-- Video Section -->
+    <section id="videos" class="section">
+        <div class="container">
+            <h2 class="section-title">Video Projects</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="event">Events</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="wedding">Wedding</button>
+                <button class="filter-btn" data-filter="documentary">Documentary</button>
+                <button class="filter-btn" data-filter="nature">Nature</button>
+                <button class="filter-btn" data-filter="cinematic">Cinematic</button>
+            </div>
+            <div id="videoGrid" class="grid-container">
+                <!-- Videos will be dynamically added here -->
+            </div>
         </div>
-        <div id="videoGrid" class="grid-container"></div>
     </section>
 
     <!-- Projects Section -->
@@ -303,9 +310,9 @@
 
     <!-- Video Modal -->
     <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="videoPlayerContainer"></div>
+        <span class="close">&times;</span>
+        <div id="videoPlayerContainer" class="modal-content">
+            <!-- Video iframe will be inserted here -->
         </div>
     </div>
 

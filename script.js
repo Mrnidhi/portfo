@@ -173,43 +173,95 @@ const posters = [
 
 const videos = [
     {
-        title: "Wedding Highlights",
+        title: "Bird Capture",
         videoSrc: "https://player.vimeo.com/video/1072700168?h=f8bcd08d19",
         thumbnail: "https://drive.google.com/file/d/1RTHuupw0lsNmgkGulR2qX2IvbFJmuWBx/view?usp=sharing",
-        category: "wedding"
+        category: "nature"
     },
     {
-        title: "Event Coverage",
+        title: "Lola Cute Reel",
         videoSrc: "https://player.vimeo.com/video/1072700174?h=2ea0fb956a",
         thumbnail: "https://drive.google.com/file/d/1S1tfpCMa1Y9qZ0m47B8e3FQijQUMdkif/view?usp=sharing",
+        category: "commercial"
+    },
+    {
+        title: "Jnana Cauvery College Event",
+        videoSrc: "https://player.vimeo.com/video/1072700186?h=cc8418b575",
+        thumbnail: "https://drive.google.com/file/d/1Rmd_88IcQgXdO7b3ZAErUAKNBPO-KA3V/view?usp=sharing",
         category: "event"
     },
     {
-        title: "Commercial Project",
-        videoSrc: "https://player.vimeo.com/video/1072700186?h=cc8418b575",
-        thumbnail: "https://drive.google.com/file/d/1Rmd_88IcQgXdO7b3ZAErUAKNBPO-KA3V/view?usp=sharing",
+        title: "Jnana Cauvery Logo Launch Event",
+        videoSrc: "https://player.vimeo.com/video/1072700193?h=dfbf09124e",
+        thumbnail: "https://drive.google.com/file/d/1RbYupji-yu0MzXJa5P3uChtAVL5hB-wu/view?usp=sharing",
+        category: "event"
+    },
+    {
+        title: "PESCO Bike Stunt Event",
+        videoSrc: "https://player.vimeo.com/video/1072700200?h=0218dd1018",
+        thumbnail: "https://drive.google.com/file/d/1RzQjGR-N-4YR-hXzRnG_qxVdDGi3Hi75/view?usp=sharing",
+        category: "event"
+    },
+    {
+        title: "PES Electrical Department",
+        videoSrc: "https://player.vimeo.com/video/1072700205?h=ee89663249",
+        thumbnail: "https://drive.google.com/file/d/1RVllG0kincokjfuGwlvb9julYoWPYpbR/view?usp=sharing",
         category: "commercial"
     },
-    // Adding the rest of the videos with appropriate categories
-    ...Array.from({ length: 12 }, (_, i) => ({
-        title: `Video Project ${i + 4}`,
-        videoSrc: `https://player.vimeo.com/video/1072700${190 + i}?h=cc8418b575`,
-        thumbnail: [
-            "https://drive.google.com/file/d/1RbYupji-yu0MzXJa5P3uChtAVL5hB-wu/view?usp=sharing",
-            "https://drive.google.com/file/d/1RzQjGR-N-4YR-hXzRnG_qxVdDGi3Hi75/view?usp=sharing",
-            "https://drive.google.com/file/d/1RVllG0kincokjfuGwlvb9julYoWPYpbR/view?usp=sharing",
-            "https://drive.google.com/file/d/1QiMjeoaPiR0pPvJJwpoB2S47AmQJt018/view?usp=sharing",
-            "https://drive.google.com/file/d/1R8074im1eg_vcmgh5d2WmUDoQ0JYHXhu/view?usp=sharing",
-            "https://drive.google.com/file/d/1RfGkTnbwMpD5KSoESCsJknQIO779cIk2/view?usp=sharing",
-            "https://drive.google.com/file/d/1Rg0cpUBuuocuF9gUL6ZYZF1yxlk5hIzb/view?usp=drive_link",
-            "https://drive.google.com/file/d/1RdTu8c01c4rioEpCqba_h4bsC0k_tflL/view?usp=drive_link",
-            "https://drive.google.com/file/d/1RlVgeMte0tfp5c5NaGDu9R1hTklwd_t3/view?usp=drive_link",
-            "https://drive.google.com/file/d/1RMY3LczK2Zzelr4R83e6TLxvdrpt5jpU/view?usp=drive_link",
-            "https://drive.google.com/file/d/1QJ2T7HeJ8ZpywG80i0Iy2ErYp-7hGnP6/view?usp=drive_link",
-            "https://drive.google.com/file/d/1Rw-dN1hLXoh-QtLN9wzapNSC3je6dkT0/view?usp=drive_link"
-        ][i],
-        category: ["wedding", "event", "commercial"][i % 3]
-    }))
+    {
+        title: "Ethnic Day Event",
+        videoSrc: "https://player.vimeo.com/video/1072700213?h=3f82b593cd",
+        thumbnail: "https://drive.google.com/file/d/1QiMjeoaPiR0pPvJJwpoB2S47AmQJt018/view?usp=sharing",
+        category: "event"
+    },
+    {
+        title: "Kings Coffee Promotional Video",
+        videoSrc: "https://player.vimeo.com/video/1072700220?h=38f2e053f5",
+        thumbnail: "https://drive.google.com/file/d/1R8074im1eg_vcmgh5d2WmUDoQ0JYHXhu/view?usp=sharing",
+        category: "commercial"
+    },
+    {
+        title: "Jnana Cauvery Logo",
+        videoSrc: "https://player.vimeo.com/video/1072700260?h=096324d4bd",
+        thumbnail: "https://drive.google.com/file/d/1RfGkTnbwMpD5KSoESCsJknQIO779cIk2/view?usp=sharing",
+        category: "commercial"
+    },
+    {
+        title: "Coorg Cinematic Reel",
+        videoSrc: "https://player.vimeo.com/video/1072700265?h=822b06e344",
+        thumbnail: "https://drive.google.com/file/d/1Rg0cpUBuuocuF9gUL6ZYZF1yxlk5hIzb/view?usp=sharing",
+        category: "cinematic"
+    },
+    {
+        title: "Promotional Video",
+        videoSrc: "https://player.vimeo.com/video/1072700279?h=645af8094b",
+        thumbnail: "https://drive.google.com/file/d/1RdTu8c01c4rioEpCqba_h4bsC0k_tflL/view?usp=sharing",
+        category: "commercial"
+    },
+    {
+        title: "Pre-Wedding Video Palace",
+        videoSrc: "https://player.vimeo.com/video/1072700291?h=73ea988df6",
+        thumbnail: "https://drive.google.com/file/d/1RlVgeMte0tfp5c5NaGDu9R1hTklwd_t3/view?usp=sharing",
+        category: "wedding"
+    },
+    {
+        title: "Pre-Wedding Video Beach",
+        videoSrc: "https://player.vimeo.com/video/1072700300?h=9f6d796a5e",
+        thumbnail: "https://drive.google.com/file/d/1RMY3LczK2Zzelr4R83e6TLxvdrpt5jpU/view?usp=sharing",
+        category: "wedding"
+    },
+    {
+        title: "Documentary Video",
+        videoSrc: "https://player.vimeo.com/video/1072700308?h=5b766692eb",
+        thumbnail: "https://drive.google.com/file/d/1QJ2T7HeJ8ZpywG80i0Iy2ErYp-7hGnP6/view?usp=sharing",
+        category: "documentary"
+    },
+    {
+        title: "PESCO Event Video Frames",
+        videoSrc: "https://player.vimeo.com/video/1072700316?h=768ad89167",
+        thumbnail: "https://drive.google.com/file/d/1Rw-dN1hLXoh-QtLN9wzapNSC3je6dkT0/view?usp=sharing",
+        category: "event"
+    }
 ];
 
 // Function to create grid items for images
@@ -370,11 +422,20 @@ function createVideoItem(video) {
 
 // Function to open video modal
 function openVideoModal(videoSrc) {
-    const modal = getElementById("videoModal");
-    const modalContent = getElementById("videoPlayerContainer");
-    if (modal && modalContent) {
-        modalContent.innerHTML = `<iframe title="vimeo-player" src="${videoSrc}" width="640" height="360" frameborder="0" allowfullscreen></iframe>`;
-        modal.style.display = "block";
+    const modal = getElementById('videoModal');
+    const videoContainer = getElementById('videoPlayerContainer');
+    
+    if (modal && videoContainer) {
+        videoContainer.innerHTML = `
+            <iframe 
+                src="${videoSrc}" 
+                width="100%" 
+                height="100%" 
+                frameborder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                allowfullscreen
+            ></iframe>`;
+        modal.style.display = 'block';
     }
 }
 

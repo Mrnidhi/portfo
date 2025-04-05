@@ -397,31 +397,33 @@ section {
 .portfolio-filters {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
     flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .filter-btn {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border: none;
-    background-color: var(--card-bg);
+    padding: 8px 16px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
     color: var(--text-color);
-    border-radius: var(--border-radius-md);
+    border-radius: 25px;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all 0.3s ease;
+    font-size: 14px;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
+    gap: 20px;
+    padding: 20px;
 }
 
 .grid-item {
@@ -597,32 +599,36 @@ section {
 .modal {
     display: none;
     position: fixed;
+    z-index: 1000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .modal-content {
     position: relative;
     width: 90%;
-    max-width: 800px;
-    margin: 50px auto;
-    background-color: var(--bg-color);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius-lg);
+    max-width: 1200px;
+    height: 80vh;
+    margin: 40px auto;
+    background: var(--bg-color);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .close {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    font-size: 1.5rem;
-    color: var(--text-color);
+    right: 20px;
+    top: 10px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
     cursor: pointer;
-    transition: color var(--transition-fast);
+    z-index: 1001;
 }
 
 .close:hover {
@@ -630,19 +636,62 @@ section {
 }
 
 #videoPlayerContainer {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 #videoPlayerContainer iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border: none;
+}
+
+/* Video Grid */
+.video-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+    transform: scale(1.02);
+}
+
+.video-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.play-button::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent white;
+    margin-left: 4px;
+}
+
+.video-item:hover .play-button {
+    background: var(--primary-color);
 }
 
 /* Back to Top Button */
@@ -739,6 +788,17 @@ section {
     .contact-content {
         grid-template-columns: 1fr;
     }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        height: 60vh;
+        margin: 20% auto;
+    }
 }
 
 /* Animations */
@@ -783,35 +843,6 @@ section {
     background: rgba(255, 68, 68, 0.1);
     border-radius: 8px;
     margin: 10px;
-}
-
-/* Play button overlay */
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.play-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    border-style: solid;
-    border-width: 15px 0 15px 25px;
-    border-color: transparent transparent transparent white;
-}
-
-.play-button:hover {
-    background: rgba(0, 0, 0, 0.9);
 }
 
 /* Grid item positioning */

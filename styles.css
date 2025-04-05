@@ -265,95 +265,84 @@ section {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 80px;
+    padding: 100px 0;
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
 }
 
 .hero-content {
     flex: 1;
-    padding-right: var(--spacing-xl);
+    max-width: 600px;
 }
 
-.hero-title {
+.hero h1 {
     font-size: 3.5rem;
-    margin-bottom: var(--spacing-md);
-}
-
-.highlight {
-    color: var(--primary-color);
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--secondary-color);
-    margin-bottom: var(--spacing-lg);
-}
-
-.hero-description {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-xl);
-}
-
-.hero-buttons {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
-}
-
-.social-links {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--card-bg);
+    margin-bottom: 1rem;
     color: var(--text-color);
-    transition: all var(--transition-fast);
 }
 
-.social-link:hover {
-    background-color: var(--primary-color);
-    color: white;
-    transform: translateY(-3px);
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-color-light);
+    margin-bottom: 2rem;
 }
 
 .hero-image {
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .hero-image img {
-    max-width: 100%;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 10px 30px var(--shadow-color);
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 /* About Section */
 .about-content {
     display: flex;
-    gap: var(--spacing-xl);
     align-items: center;
+    gap: 50px;
+    margin-top: 3rem;
 }
 
 .about-text {
     flex: 1;
 }
 
+.about-text p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
 .about-image {
     flex: 1;
+    max-width: 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 .about-image img {
-    max-width: 100%;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 10px 30px var(--shadow-color);
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 /* Skills Section */
@@ -833,7 +822,50 @@ section {
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+    .hero .container,
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content,
+    .about-text {
+        max-width: 100%;
+    }
+
+    .hero-image,
+    .about-image {
+        max-width: 100%;
+        margin-top: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero {
+        padding: 80px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero .subtitle {
+        font-size: 1rem;
+    }
+
+    .about-content {
+        gap: 30px;
+    }
+
     .nav-links {
         display: none;
         position: fixed;
@@ -865,38 +897,6 @@ section {
 
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg);
-    }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 120px;
-    }
-
-    .hero-content {
-        padding-right: 0;
-        margin-bottom: var(--spacing-xl);
-    }
-
-    .hero-buttons {
-        justify-content: center;
-    }
-
-    .about-content {
-        flex-direction: column;
-    }
-
-    .about-image {
-        order: -1;
-        margin-bottom: var(--spacing-xl);
-    }
-
-    .about-stats {
-        flex-direction: column;
-    }
-
-    .contact-content {
-        grid-template-columns: 1fr;
     }
 
     .grid-item {

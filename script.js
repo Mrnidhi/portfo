@@ -28,6 +28,10 @@ function getElementById(id) {
     return element;
 }
 
+// Constants for grid display
+const ITEMS_PER_VIEW = 3;
+const ANIMATION_DELAY = 100;
+
 // Data arrays for the portfolio sections
 const photos = [
     { 
@@ -264,14 +268,45 @@ const videos = [
     }
 ];
 
+// Function to create carousel navigation dots
+function createCarouselNav(gridId, totalItems) {
+    const navContainer = document.getElementById(`${gridId}Nav`);
+    if (!navContainer) return;
+    
+    navContainer.innerHTML = '';
+    const numDots = Math.ceil(totalItems / ITEMS_PER_VIEW);
+    
+    for (let i = 0; i < numDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot';
+        if (i === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+            const grid = document.getElementById(gridId);
+            const scrollPosition = i * (grid.querySelector('.grid-item').offsetWidth + 30);
+            grid.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+            
+            // Update active dot
+            navContainer.querySelectorAll('.carousel-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+        });
+        
+        navContainer.appendChild(dot);
+    }
+}
+
 // Function to create grid items for images
-function createImageItem(item) {
+function createImageItem(item, index) {
     const div = document.createElement("div");
-    div.className = `grid-item ${item.category}`;
+    div.className = "grid-item";
+    div.style.animationDelay = `${index * ANIMATION_DELAY}ms`;
     
     const img = document.createElement("img");
     img.alt = item.title;
-    img.loading = "lazy"; // Add lazy loading
+    img.loading = "lazy";
     
     // Add loading state
     div.innerHTML = '<div class="loading-spinner"></div>';
@@ -292,42 +327,7 @@ function createImageItem(item) {
     tempImg.onerror = function() {
         console.error(`Failed to load image: ${item.title} from URL: ${item.url}`);
         div.querySelector('.loading-spinner').remove();
-        
-        // Try alternative method if first attempt fails
-        const alternativeUrl = `https://drive.google.com/thumbnail?id=${item.url.match(/\/file\/d\/([^/]+)/)[1]}`;
-        const retryImg = new Image();
-        
-        retryImg.onload = function() {
-            img.src = this.src;
-            div.appendChild(img);
-            img.setAttribute('data-lightbox', 'gallery');
-            img.setAttribute('data-title', item.title);
-        };
-        
-        retryImg.onerror = function() {
-            // Try one last method
-            const lastAttemptUrl = `https://drive.google.com/uc?id=${item.url.match(/\/file\/d\/([^/]+)/)[1]}`;
-            const lastRetryImg = new Image();
-            
-            lastRetryImg.onload = function() {
-                img.src = this.src;
-                div.appendChild(img);
-                img.setAttribute('data-lightbox', 'gallery');
-                img.setAttribute('data-title', item.title);
-            };
-            
-            lastRetryImg.onerror = function() {
-                div.innerHTML = `
-                    <div class="error-message">
-                        <p>Image failed to load</p>
-                        <small>${item.title}</small>
-                    </div>`;
-            };
-            
-            lastRetryImg.src = lastAttemptUrl;
-        };
-        
-        retryImg.src = alternativeUrl;
+        div.innerHTML = `<div class="error-message">Failed to load image</div>`;
     };
     
     // Start loading the image
@@ -337,13 +337,14 @@ function createImageItem(item) {
 }
 
 // Function to create grid items for video thumbnails
-function createVideoItem(video) {
+function createVideoItem(video, index) {
     const div = document.createElement("div");
-    div.className = `grid-item video-item ${video.category}`;
+    div.className = "grid-item video-item";
+    div.style.animationDelay = `${index * ANIMATION_DELAY}ms`;
     
     const img = document.createElement("img");
     img.alt = video.title;
-    img.loading = "lazy"; // Add lazy loading
+    img.loading = "lazy";
     
     // Add loading state
     div.innerHTML = '<div class="loading-spinner"></div>';
@@ -364,49 +365,8 @@ function createVideoItem(video) {
     
     tempImg.onerror = function() {
         console.error(`Failed to load thumbnail: ${video.title} from URL: ${video.thumbnail}`);
-        
-        // Try alternative method if first attempt fails
-        const alternativeUrl = `https://drive.google.com/thumbnail?id=${video.thumbnail.match(/\/file\/d\/([^/]+)/)[1]}`;
-        const retryImg = new Image();
-        
-        retryImg.onload = function() {
-            div.querySelector('.loading-spinner').remove();
-            img.src = this.src;
-            div.appendChild(img);
-            
-            const playButton = document.createElement("div");
-            playButton.className = "play-button";
-            div.appendChild(playButton);
-        };
-        
-        retryImg.onerror = function() {
-            // Try one last method
-            const lastAttemptUrl = `https://drive.google.com/uc?id=${video.thumbnail.match(/\/file\/d\/([^/]+)/)[1]}`;
-            const lastRetryImg = new Image();
-            
-            lastRetryImg.onload = function() {
-                div.querySelector('.loading-spinner').remove();
-                img.src = this.src;
-                div.appendChild(img);
-                
-                const playButton = document.createElement("div");
-                playButton.className = "play-button";
-                div.appendChild(playButton);
-            };
-            
-            lastRetryImg.onerror = function() {
-                div.querySelector('.loading-spinner').remove();
-                div.innerHTML = `
-                    <div class="error-message">
-                        <p>Thumbnail failed to load</p>
-                        <small>${video.title}</small>
-                    </div>`;
-            };
-            
-            lastRetryImg.src = lastAttemptUrl;
-        };
-        
-        retryImg.src = alternativeUrl;
+        div.querySelector('.loading-spinner').remove();
+        div.innerHTML = `<div class="error-message">Failed to load thumbnail</div>`;
     };
     
     // Start loading the thumbnail
@@ -439,6 +399,41 @@ function openVideoModal(videoSrc) {
     }
 }
 
+// Function to populate grid with items
+function populateGrid(gridId, items, createItemFunction) {
+    const grid = getElementById(gridId);
+    if (!grid) return;
+    
+    // Clear existing content
+    grid.innerHTML = '';
+    
+    // Add all items
+    items.forEach((item, index) => {
+        grid.appendChild(createItemFunction(item, index));
+    });
+    
+    // Create carousel navigation
+    createCarouselNav(gridId, items.length);
+    
+    // Add scroll event listener for carousel navigation
+    grid.addEventListener('scroll', () => {
+        const scrollPosition = grid.scrollLeft;
+        const itemWidth = grid.querySelector('.grid-item').offsetWidth + 30;
+        const currentIndex = Math.round(scrollPosition / itemWidth);
+        
+        const navContainer = document.getElementById(`${gridId}Nav`);
+        if (navContainer) {
+            navContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+    });
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize preloader
@@ -460,26 +455,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Populate grids
-    const photoGrid = getElementById("photoGrid");
-    const videoGrid = getElementById("videoGrid");
-    const posterGrid = getElementById("posterGrid");
-
-    if (photoGrid && photos) {
-        photos.forEach(photo => {
-            photoGrid.appendChild(createImageItem(photo));
-        });
+    if (photos) {
+        populateGrid("photoGrid", photos, createImageItem);
     }
-
-    if (videoGrid && videos) {
-        videos.forEach(video => {
-            videoGrid.appendChild(createVideoItem(video));
-        });
+    
+    if (videos) {
+        populateGrid("videoGrid", videos, createVideoItem);
     }
-
-    if (posterGrid && posters) {
-        posters.forEach(poster => {
-            posterGrid.appendChild(createImageItem(poster));
-        });
+    
+    if (posters) {
+        populateGrid("posterGrid", posters, createImageItem);
     }
 
     // Initialize video modal
@@ -505,32 +490,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalContent.innerHTML = "";
             }
         }
-    });
-
-    // Portfolio filtering
-    document.querySelectorAll('.portfolio-filters').forEach(filterContainer => {
-        const filterButtons = filterContainer.querySelectorAll('.filter-btn');
-        const gridContainer = filterContainer.nextElementSibling;
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                const filter = button.dataset.filter;
-                const items = gridContainer.querySelectorAll('.grid-item');
-                
-                items.forEach(item => {
-                    if (filter === 'all' || item.classList.contains(filter)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
     });
 
     // Theme Toggle

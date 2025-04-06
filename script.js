@@ -1,21 +1,13 @@
-// Helper function to convert a Google Drive link to a direct image URL
+// Profile Images
+const profileImages = {
+    hero: 'https://drive.google.com/file/d/1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3/view?usp=sharing',
+    about: 'https://drive.google.com/file/d/1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue/view?usp=sharing'
+};
+
+// Helper function to convert Google Drive link to direct image URL
 function getDirectLink(url) {
-    // Check if it's a Google Drive URL
-    if (url.includes('drive.google.com')) {
-        // Extract the file ID
-        let fileId = '';
-        
-        // For URLs containing /file/d/
-        const filePattern = /\/file\/d\/([^/]+)/;
-        const fileMatch = url.match(filePattern);
-        
-        if (fileMatch && fileMatch[1]) {
-            fileId = fileMatch[1];
-            // Return the direct image URL using a different format
-            return `https://lh3.googleusercontent.com/d/${fileId}`;
-        }
-    }
-    return url;
+    const fileId = url.match(/[-\w]{25,}/);
+    return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : '';
 }
 
 // Function to safely get an element by ID
@@ -616,6 +608,18 @@ document.addEventListener('DOMContentLoaded', () => {
             'wrapAround': true,
             'albumLabel': 'Image %1 of %2'
         });
+    }
+
+    // Set profile images
+    const heroImage = document.getElementById('heroImage');
+    const aboutImage = document.getElementById('aboutImage');
+    
+    if (heroImage) {
+        heroImage.src = getDirectLink(profileImages.hero);
+    }
+    
+    if (aboutImage) {
+        aboutImage.src = getDirectLink(profileImages.about);
     }
 });
   

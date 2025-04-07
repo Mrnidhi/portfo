@@ -1,13 +1,36 @@
 // Profile Images
 const profileImages = {
-    hero: 'https://drive.google.com/file/d/1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3/view?usp=sharing',
-    about: 'https://drive.google.com/file/d/1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue/view?usp=sharing'
+    hero: 'https://drive.google.com/uc?export=view&id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3',
+    about: 'https://drive.google.com/uc?export=view&id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue'
 };
 
 // Helper function to convert Google Drive link to direct image URL
 function getDirectLink(url) {
-    const fileId = url.match(/[-\w]{25,}/);
-    return fileId ? `https://drive.google.com/uc?export=view&id=${fileId[0]}` : '';
+    // If URL is already in direct format, return it.
+    if (url.includes('drive.google.com/uc?export=view')) {
+        return url;
+    }
+    // Check for the /file/d/ pattern using regex.
+    const fileMatch = url.match(/\/file\/d\/([^\/]+)/);
+    if (fileMatch && fileMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${fileMatch[1]}`;
+    }
+    // Fallback: try to extract the file ID from the URL using URL API.
+    try {
+        const parsedUrl = new URL(url);
+        let fileId = parsedUrl.searchParams.get('id');
+        if (!fileId) {
+            const parts = parsedUrl.pathname.split('/');
+            const dIndex = parts.indexOf('d');
+            if (dIndex !== -1 && parts.length > dIndex + 1) {
+                fileId = parts[dIndex + 1];
+            }
+        }
+        return fileId ? `https://drive.google.com/uc?export=view&id=${fileId}` : url;
+    } catch (e) {
+        console.error("Invalid URL provided:", url);
+        return url;
+    }
 }
 
 // Function to safely get an element by ID
@@ -26,94 +49,102 @@ const ANIMATION_DELAY = 100;
 
 // Data arrays for the portfolio sections
 const photos = [
+    {
+        title: 'Photo 1',
+        url: 'https://drive.google.com/uc?export=view&id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3'
+    },
+    {
+        title: 'Photo 2',
+        url: 'https://drive.google.com/uc?export=view&id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue'
+    },
     { 
         title: "Nature Photography",
-        url: "https://drive.google.com/file/d/1RDnSun2OKFMCnvL8R5c9EFldRE1awsYd/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1RDnSun2OKFMCnvL8R5c9EFldRE1awsYd",
         category: "landscape"
     },
     { 
         title: "Urban Landscape",
-        url: "https://drive.google.com/file/d/1R1D0pOgf0lLY_D79mvW5xYcSHUuCofGX/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1R1D0pOgf0lLY_D79mvW5xYcSHUuCofGX",
         category: "landscape"
     },
     { 
         title: "Event Coverage",
-        url: "https://drive.google.com/file/d/1R2TOJ8pNNfKYEN0MSQ1pUF_CNmed-4d6/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1R2TOJ8pNNfKYEN0MSQ1pUF_CNmed-4d6",
         category: "event"
     },
     { 
         title: "Portrait Study",
-        url: "https://drive.google.com/file/d/1Qh3cUl0kccKFEecqSPi_C88jhOIBbRQY/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1Qh3cUl0kccKFEecqSPi_C88jhOIBbRQY",
         category: "portrait"
     },
     { 
         title: "Landscape View",
-        url: "https://drive.google.com/file/d/1RWYyMB7FKTmrePZuCtL9H1T5UYC72Q9S/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1RWYyMB7FKTmrePZuCtL9H1T5UYC72Q9S",
         category: "landscape"
     },
     { 
         title: "Event Moment",
-        url: "https://drive.google.com/file/d/1QW5uAeCXt2QGHU-Yv7TdCdN4YAfaSkqe/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QW5uAeCXt2QGHU-Yv7TdCdN4YAfaSkqe",
         category: "event"
     },
     { 
         title: "Portrait Session",
-        url: "https://drive.google.com/file/d/1QNTiH4YyuZGpgXyZaXCi2mUrSr75lxLk/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QNTiH4YyuZGpgXyZaXCi2mUrSr75lxLk",
         category: "portrait"
     },
     { 
         title: "Event Photography",
-        url: "https://drive.google.com/file/d/1QfdvZz6cw6-BX3gImx73ozls-FA4jaJH/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QfdvZz6cw6-BX3gImx73ozls-FA4jaJH",
         category: "event"
     },
     { 
         title: "Landscape Scene",
-        url: "https://drive.google.com/file/d/1QvptH7GEFuYs9579x66wgE4aTndrtgwB/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QvptH7GEFuYs9579x66wgE4aTndrtgwB",
         category: "landscape"
     },
     { 
         title: "Portrait Art",
-        url: "https://drive.google.com/file/d/1RKj3vX6PpecVd1NfAdHZmpr74r4TCjeb/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1RKj3vX6PpecVd1NfAdHZmpr74r4TCjeb",
         category: "portrait"
     },
     { 
         title: "Event Capture",
-        url: "https://drive.google.com/file/d/1QKm96SE7qjpYJTcDZZUES384F8A99cNE/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QKm96SE7qjpYJTcDZZUES384F8A99cNE",
         category: "event"
     },
     { 
         title: "Landscape Beauty",
-        url: "https://drive.google.com/file/d/1RMWTJaNR60NbG8S15wBH2r7WikTOgMpa/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1RMWTJaNR60NbG8S15wBH2r7WikTOgMpa",
         category: "landscape"
     },
     { 
         title: "Portrait Style",
-        url: "https://drive.google.com/file/d/1QYKJRHUyShrfwgHnuM21cEuwd4gccMnX/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QYKJRHUyShrfwgHnuM21cEuwd4gccMnX",
         category: "portrait"
     },
     { 
         title: "Event Highlights",
-        url: "https://drive.google.com/file/d/1QUlWySKAF_S3p3V_9nrAy5R3jZDseKbh/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1QUlWySKAF_S3p3V_9nrAy5R3jZDseKbh",
         category: "event"
     },
     { 
         title: "Landscape Vista",
-        url: "https://drive.google.com/file/d/1R97Uj7DPblwnb5k28bYxaSD2aM3DIde3/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1R97Uj7DPblwnb5k28bYxaSD2aM3DIde3",
         category: "landscape"
     },
     { 
         title: "Portrait Mood",
-        url: "https://drive.google.com/file/d/1Qika9tOCNwbzOYFPF-ABftWIra6Z8zob/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1Qika9tOCNwbzOYFPF-ABftWIra6Z8zob",
         category: "portrait"
     },
     { 
         title: "Event Story",
-        url: "https://drive.google.com/file/d/1RKheUiGQEiyQJOtqI-tqDQcTwdp77bCA/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1RKheUiGQEiyQJOtqI-tqDQcTwdp77bCA",
         category: "event"
     },
     { 
         title: "Landscape Panorama",
-        url: "https://drive.google.com/file/d/1R3G40PkRbTdX05TOYtNTnhVt3e52XyU2/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1R3G40PkRbTdX05TOYtNTnhVt3e52XyU2",
         category: "landscape"
     }
 ];
@@ -121,47 +152,48 @@ const photos = [
 const posters = [
     { 
         title: "Short Film Poster 1",
-        url: "https://drive.google.com/file/d/1TY4pTWWu2hDVF35VCNO8E3KJ98HuzKvF/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1TY4pTWWu2hDVF35VCNO8E3KJ98HuzKvF",
         category: "short-film"
     },
     { 
         title: "Documentary Poster 1",
-        url: "https://drive.google.com/file/d/1ShNJb3fuLmV1E7-xrNBpw4Ms0laL3B_G/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1ShNJb3fuLmV1E7-xrNBpw4Ms0laL3B_G",
         category: "documentary"
     },
     { 
         title: "Music Video Poster 1",
-        url: "https://drive.google.com/file/d/1SmLyTYzAzbykGmAuObzswJkW3Mfetcxg/view?usp=sharing",
+        url: "https://drive.google.com/uc?export=view&id=1SmLyTYzAzbykGmAuObzswJkW3Mfetcxg",
         category: "music-video"
     },
     // Adding the rest of the posters with appropriate categories
     ...Array.from({ length: 24 }, (_, i) => ({
         title: `Cinematic Work ${i + 4}`,
         url: [
-            "https://drive.google.com/file/d/1SX-oULqD55nGNLEpY--P49ARVOfAK1vM/view?usp=sharing",
-            "https://drive.google.com/file/d/1Tdzk7eGm-klR-K5X5_-FlV-wPrS3_M3G/view?usp=sharing",
-            "https://drive.google.com/file/d/1U0WllD2X_Wm9GQ1r-IhTahujTb_ySUkn/view?usp=sharing",
-            "https://drive.google.com/file/d/1SXgXXwqugtfOuvmKWa1v1-ofJU1OG8Zo/view?usp=sharing",
-            "https://drive.google.com/file/d/1St5ROAmf3XYhjO9naTLnNpoFJEknA8s2/view?usp=sharing",
-            "https://drive.google.com/file/d/1TsE59PsJxg3arXGM71Ji174nkXJ_Riyz/view?usp=sharing",
+            "https://drive.google.com/uc?export=view&id=1SX-oULqD55nGNLEpY--P49ARVOfAK1vM",
+            "https://drive.google.com/uc?export=view&id=1Tdzk7eGm-klR-K5X5_-FlV-wPrS3_M3G",
+            "https://drive.google.com/uc?export=view&id=1U0WllD2X_Wm9GQ1r-IhTahujTb_ySUkn",
+            "https://drive.google.com/uc?export=view&id=1SXgXXwqugtfOuvmKWa1v1-ofJU1OG8Zo",
+            "https://drive.google.com/uc?export=view&id=1St5ROAmf3XYhjO9naTLnNpoFJEknA8s2",
+            "https://drive.google.com/uc?export=view&id=1TsE59PsJxg3arXGM71Ji174nkXJ_Riyz",
+            // For Cinematic Work 10, the URL is in the /file/d/ format.
             "https://drive.google.com/file/d/1TVJcttjpBRDSYmSlvRjbOUqogivvpBT3/view?usp=sharing",
-            "https://drive.google.com/file/d/1SmP5MrzUA9aI2yMwHxztDN1DAWc5eIht/view?usp=sharing",
-            "https://drive.google.com/file/d/1SR14ylOCK2zb6qOVnY0Jw6cAUVQ_GL4f/view?usp=sharing",
-            "https://drive.google.com/file/d/1ShJNDbHtve-JnNDLkr4Na8gThy_8jTf-/view?usp=sharing",
-            "https://drive.google.com/file/d/1Ss_2BA2KlumOmOOq9hvOK_aZqLm7DTd5/view?usp=sharing",
-            "https://drive.google.com/file/d/1SHTwZtq1h9-Xla42m5m5FTQn2mmhvkpl/view?usp=sharing",
-            "https://drive.google.com/file/d/1TgbNjSjkj6eIARCpk2FATwKQx0SIPoJ-/view?usp=sharing",
-            "https://drive.google.com/file/d/1Tr_hMpKC5ShksyZ8UYsw4BzXbEy4IhR0/view?usp=sharing",
-            "https://drive.google.com/file/d/1T55fOoH3KWzfus3RJr42La7sp-K2A7Qr/view?usp=sharing",
-            "https://drive.google.com/file/d/1THGBanNmuK7LAhpUrejKVIzmk2KTzWVw/view?usp=sharing",
-            "https://drive.google.com/file/d/1Tj9NJnxsfthMEhroe4QtySuxuW9im9wy/view?usp=sharing",
-            "https://drive.google.com/file/d/1TgHj1BfX50nJE935evou4hNv7qH91aWG/view?usp=sharing",
-            "https://drive.google.com/file/d/1TfP1KdLwsEjWkB4XyEtI6kjx8uS_Q3lV/view?usp=sharing",
-            "https://drive.google.com/file/d/1TZtzwQtfd6nnXccxOPyeXsED86MzkE6u/view?usp=sharing",
-            "https://drive.google.com/file/d/1SY6ghjTI6vho5PZX9LXulHQp5S9C_gzi/view?usp=sharing",
-            "https://drive.google.com/file/d/1TdHnamcr4GqUfIZqilejpOGBdZ7Exu5Z/view?usp=sharing",
-            "https://drive.google.com/file/d/1Ttt6xz7-rJRgUx4hnSqg6T4npefAmgI5/view?usp=sharing",
-            "https://drive.google.com/file/d/1T6dq7BXiq865BIa7HP2cviLb4SZ5A2qH/view?usp=sharing"
+            "https://drive.google.com/uc?export=view&id=1SmP5MrzUA9aI2yMwHxztDN1DAWc5eIht",
+            "https://drive.google.com/uc?export=view&id=1SR14ylOCK2zb6qOVnY0Jw6cAUVQ_GL4f",
+            "https://drive.google.com/uc?export=view&id=1ShJNDbHtve-JnNDLkr4Na8gThy_8jTf-",
+            "https://drive.google.com/uc?export=view&id=1Ss_2BA2KlumOmOOq9hvOK_aZqLm7DTd5",
+            "https://drive.google.com/uc?export=view&id=1SHTwZtq1h9-Xla42m5m5FTQn2mmhvkpl",
+            "https://drive.google.com/uc?export=view&id=1TgbNjSjkj6eIARCpk2FATwKQx0SIPoJ-",
+            "https://drive.google.com/uc?export=view&id=1Tr_hMpKC5ShksyZ8UYsw4BzXbEy4IhR0",
+            "https://drive.google.com/uc?export=view&id=1T55fOoH3KWzfus3RJr42La7sp-K2A7Qr",
+            "https://drive.google.com/uc?export=view&id=1THGBanNmuK7LAhpUrejKVIzmk2KTzWVw",
+            "https://drive.google.com/uc?export=view&id=1Tj9NJnxsfthMEhroe4QtySuxuW9im9wy",
+            "https://drive.google.com/uc?export=view&id=1TgHj1BfX50nJE935evou4hNv7qH91aWG",
+            "https://drive.google.com/uc?export=view&id=1TfP1KdLwsEjWkB4XyEtI6kjx8uS_Q3lV",
+            "https://drive.google.com/uc?export=view&id=1TZtzwQtfd6nnXccxOPyeXsED86MzkE6u",
+            "https://drive.google.com/uc?export=view&id=1SY6ghjTI6vho5PZX9LXulHQp5S9C_gzi",
+            "https://drive.google.com/uc?export=view&id=1TdHnamcr4GqUfIZqilejpOGBdZ7Exu5Z",
+            "https://drive.google.com/uc?export=view&id=1Ttt6xz7-rJRgUx4hnSqg6T4npefAmgI5",
+            "https://drive.google.com/uc?export=view&id=1T6dq7BXiq865BIa7HP2cviLb4SZ5A2qH"
         ][i],
         category: ["short-film", "documentary", "music-video"][i % 3]
     }))
@@ -171,19 +203,19 @@ const videos = [
     {
         title: "Bird Capture",
         videoSrc: "https://player.vimeo.com/video/1072700168?h=f8bcd08d19",
-        thumbnail: "https://drive.google.com/file/d/1RTHuupw0lsNmgkGulR2qX2IvbFJmuWBx/view?usp=sharing",
+        thumbnail: "https://drive.google.com/uc?export=view&id=1RTHuupw0lsNmgkGulR2qX2IvbFJmuWBx",
         category: "nature"
     },
     {
         title: "Lola Cute Reel",
         videoSrc: "https://player.vimeo.com/video/1072700174?h=2ea0fb956a",
-        thumbnail: "https://drive.google.com/file/d/1S1tfpCMa1Y9qZ0m47B8e3FQijQUMdkif/view?usp=sharing",
+        thumbnail: "https://drive.google.com/uc?export=view&id=1S1tfpCMa1Y9qZ0m47B8e3FQijQUMdkif",
         category: "commercial"
     },
     {
         title: "Jnana Cauvery College Event",
         videoSrc: "https://player.vimeo.com/video/1072700186?h=cc8418b575",
-        thumbnail: "https://drive.google.com/file/d/1Rmd_88IcQgXdO7b3ZAErUAKNBPO-KA3V/view?usp=sharing",
+        thumbnail: "https://drive.google.com/uc?export=view&id=1Rmd_88IcQgXdO7b3ZAErUAKNBPO-KA3V",
         category: "event"
     },
     {
@@ -610,16 +642,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Set profile images
+    // Set profile images for hero and about sections using a temporary image loader
     const heroImage = document.getElementById('heroImage');
     const aboutImage = document.getElementById('aboutImage');
     
     if (heroImage) {
-        heroImage.src = getDirectLink(profileImages.hero);
+        const tempHero = new Image();
+        tempHero.onload = function() {
+            heroImage.src = this.src;
+        };
+        tempHero.onerror = function() {
+            console.error("Failed to load hero image");
+            heroImage.parentElement.innerHTML = '<div class="error-message">Failed to load hero image</div>';
+        };
+        tempHero.src = profileImages.hero;
     }
     
     if (aboutImage) {
-        aboutImage.src = getDirectLink(profileImages.about);
+        const tempAbout = new Image();
+        tempAbout.onload = function() {
+            aboutImage.src = this.src;
+        };
+        tempAbout.onerror = function() {
+            console.error("Failed to load about image");
+            aboutImage.parentElement.innerHTML = '<div class="error-message">Failed to load about image</div>';
+        };
+        tempAbout.src = profileImages.about;
     }
 });
-  

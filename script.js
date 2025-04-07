@@ -1,21 +1,27 @@
 // Profile Images
 const profileImages = {
-    hero: 'https://drive.google.com/uc?export=view&id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3',
-    about: 'https://drive.google.com/uc?export=view&id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue'
+    hero: 'https://drive.google.com/thumbnail?id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3&sz=w1000',
+    about: 'https://drive.google.com/thumbnail?id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue&sz=w1000'
 };
 
 // Helper function to convert Google Drive link to direct image URL
 function getDirectLink(url) {
-    // If URL is already in direct format, return it.
-    if (url.includes('drive.google.com/uc?export=view')) {
-        return url;
+    // If URL is already in direct format but without the correct parameters
+    if (url.includes('drive.google.com/uc?')) {
+        const urlObj = new URL(url);
+        const fileId = urlObj.searchParams.get('id');
+        if (fileId) {
+            return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+        }
     }
-    // Check for the /file/d/ pattern using regex.
+    
+    // Check for the /file/d/ pattern
     const fileMatch = url.match(/\/file\/d\/([^\/]+)/);
     if (fileMatch && fileMatch[1]) {
-        return `https://drive.google.com/uc?export=view&id=${fileMatch[1]}`;
+        return `https://drive.google.com/thumbnail?id=${fileMatch[1]}&sz=w1000`;
     }
-    // Fallback: try to extract the file ID from the URL using URL API.
+    
+    // Try to extract the file ID from the URL
     try {
         const parsedUrl = new URL(url);
         let fileId = parsedUrl.searchParams.get('id');
@@ -26,7 +32,7 @@ function getDirectLink(url) {
                 fileId = parts[dIndex + 1];
             }
         }
-        return fileId ? `https://drive.google.com/uc?export=view&id=${fileId}` : url;
+        return fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000` : url;
     } catch (e) {
         console.error("Invalid URL provided:", url);
         return url;
@@ -51,30 +57,30 @@ const ANIMATION_DELAY = 100;
 const photos = [
     {
         title: 'Photo 1',
-        url: 'https://drive.google.com/uc?export=view&id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3'
+        url: 'https://drive.google.com/thumbnail?id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3&sz=w1000'
     },
     {
         title: 'Photo 2',
-        url: 'https://drive.google.com/uc?export=view&id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue'
+        url: 'https://drive.google.com/thumbnail?id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue&sz=w1000'
     },
     { 
         title: "Nature Photography",
-        url: "https://drive.google.com/uc?export=view&id=1RDnSun2OKFMCnvL8R5c9EFldRE1awsYd",
+        url: "https://drive.google.com/thumbnail?id=1RDnSun2OKFMCnvL8R5c9EFldRE1awsYd&sz=w1000",
         category: "landscape"
     },
     { 
         title: "Urban Landscape",
-        url: "https://drive.google.com/uc?export=view&id=1R1D0pOgf0lLY_D79mvW5xYcSHUuCofGX",
+        url: "https://drive.google.com/thumbnail?id=1R1D0pOgf0lLY_D79mvW5xYcSHUuCofGX&sz=w1000",
         category: "landscape"
     },
     { 
         title: "Event Coverage",
-        url: "https://drive.google.com/uc?export=view&id=1R2TOJ8pNNfKYEN0MSQ1pUF_CNmed-4d6",
+        url: "https://drive.google.com/thumbnail?id=1R2TOJ8pNNfKYEN0MSQ1pUF_CNmed-4d6&sz=w1000",
         category: "event"
     },
     { 
         title: "Portrait Study",
-        url: "https://drive.google.com/uc?export=view&id=1Qh3cUl0kccKFEecqSPi_C88jhOIBbRQY",
+        url: "https://drive.google.com/thumbnail?id=1Qh3cUl0kccKFEecqSPi_C88jhOIBbRQY&sz=w1000",
         category: "portrait"
     },
     { 
@@ -152,48 +158,47 @@ const photos = [
 const posters = [
     { 
         title: "Short Film Poster 1",
-        url: "https://drive.google.com/uc?export=view&id=1TY4pTWWu2hDVF35VCNO8E3KJ98HuzKvF",
+        url: "https://drive.google.com/thumbnail?id=1TY4pTWWu2hDVF35VCNO8E3KJ98HuzKvF&sz=w1000",
         category: "short-film"
     },
     { 
         title: "Documentary Poster 1",
-        url: "https://drive.google.com/uc?export=view&id=1ShNJb3fuLmV1E7-xrNBpw4Ms0laL3B_G",
+        url: "https://drive.google.com/thumbnail?id=1ShNJb3fuLmV1E7-xrNBpw4Ms0laL3B_G&sz=w1000",
         category: "documentary"
     },
     { 
         title: "Music Video Poster 1",
-        url: "https://drive.google.com/uc?export=view&id=1SmLyTYzAzbykGmAuObzswJkW3Mfetcxg",
+        url: "https://drive.google.com/thumbnail?id=1SmLyTYzAzbykGmAuObzswJkW3Mfetcxg&sz=w1000",
         category: "music-video"
     },
     // Adding the rest of the posters with appropriate categories
     ...Array.from({ length: 24 }, (_, i) => ({
         title: `Cinematic Work ${i + 4}`,
         url: [
-            "https://drive.google.com/uc?export=view&id=1SX-oULqD55nGNLEpY--P49ARVOfAK1vM",
-            "https://drive.google.com/uc?export=view&id=1Tdzk7eGm-klR-K5X5_-FlV-wPrS3_M3G",
-            "https://drive.google.com/uc?export=view&id=1U0WllD2X_Wm9GQ1r-IhTahujTb_ySUkn",
-            "https://drive.google.com/uc?export=view&id=1SXgXXwqugtfOuvmKWa1v1-ofJU1OG8Zo",
-            "https://drive.google.com/uc?export=view&id=1St5ROAmf3XYhjO9naTLnNpoFJEknA8s2",
-            "https://drive.google.com/uc?export=view&id=1TsE59PsJxg3arXGM71Ji174nkXJ_Riyz",
-            // For Cinematic Work 10, the URL is in the /file/d/ format.
-            "https://drive.google.com/file/d/1TVJcttjpBRDSYmSlvRjbOUqogivvpBT3/view?usp=sharing",
-            "https://drive.google.com/uc?export=view&id=1SmP5MrzUA9aI2yMwHxztDN1DAWc5eIht",
-            "https://drive.google.com/uc?export=view&id=1SR14ylOCK2zb6qOVnY0Jw6cAUVQ_GL4f",
-            "https://drive.google.com/uc?export=view&id=1ShJNDbHtve-JnNDLkr4Na8gThy_8jTf-",
-            "https://drive.google.com/uc?export=view&id=1Ss_2BA2KlumOmOOq9hvOK_aZqLm7DTd5",
-            "https://drive.google.com/uc?export=view&id=1SHTwZtq1h9-Xla42m5m5FTQn2mmhvkpl",
-            "https://drive.google.com/uc?export=view&id=1TgbNjSjkj6eIARCpk2FATwKQx0SIPoJ-",
-            "https://drive.google.com/uc?export=view&id=1Tr_hMpKC5ShksyZ8UYsw4BzXbEy4IhR0",
-            "https://drive.google.com/uc?export=view&id=1T55fOoH3KWzfus3RJr42La7sp-K2A7Qr",
-            "https://drive.google.com/uc?export=view&id=1THGBanNmuK7LAhpUrejKVIzmk2KTzWVw",
-            "https://drive.google.com/uc?export=view&id=1Tj9NJnxsfthMEhroe4QtySuxuW9im9wy",
-            "https://drive.google.com/uc?export=view&id=1TgHj1BfX50nJE935evou4hNv7qH91aWG",
-            "https://drive.google.com/uc?export=view&id=1TfP1KdLwsEjWkB4XyEtI6kjx8uS_Q3lV",
-            "https://drive.google.com/uc?export=view&id=1TZtzwQtfd6nnXccxOPyeXsED86MzkE6u",
-            "https://drive.google.com/uc?export=view&id=1SY6ghjTI6vho5PZX9LXulHQp5S9C_gzi",
-            "https://drive.google.com/uc?export=view&id=1TdHnamcr4GqUfIZqilejpOGBdZ7Exu5Z",
-            "https://drive.google.com/uc?export=view&id=1Ttt6xz7-rJRgUx4hnSqg6T4npefAmgI5",
-            "https://drive.google.com/uc?export=view&id=1T6dq7BXiq865BIa7HP2cviLb4SZ5A2qH"
+            "https://drive.google.com/thumbnail?id=1SX-oULqD55nGNLEpY--P49ARVOfAK1vM&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1Tdzk7eGm-klR-K5X5_-FlV-wPrS3_M3G&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1U0WllD2X_Wm9GQ1r-IhTahujTb_ySUkn&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1SXgXXwqugtfOuvmKWa1v1-ofJU1OG8Zo&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1St5ROAmf3XYhjO9naTLnNpoFJEknA8s2&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TsE59PsJxg3arXGM71Ji174nkXJ_Riyz&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TVJcttjpBRDSYmSlvRjbOUqogivvpBT3&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1SmP5MrzUA9aI2yMwHxztDN1DAWc5eIht&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1SR14ylOCK2zb6qOVnY0Jw6cAUVQ_GL4f&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1ShJNDbHtve-JnNDLkr4Na8gThy_8jTf-&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1Ss_2BA2KlumOmOOq9hvOK_aZqLm7DTd5&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1SHTwZtq1h9-Xla42m5m5FTQn2mmhvkpl&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TgbNjSjkj6eIARCpk2FATwKQx0SIPoJ-&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1Tr_hMpKC5ShksyZ8UYsw4BzXbEy4IhR0&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1T55fOoH3KWzfus3RJr42La7sp-K2A7Qr&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1THGBanNmuK7LAhpUrejKVIzmk2KTzWVw&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1Tj9NJnxsfthMEhroe4QtySuxuW9im9wy&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TgHj1BfX50nJE935evou4hNv7qH91aWG&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TfP1KdLwsEjWkB4XyEtI6kjx8uS_Q3lV&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TZtzwQtfd6nnXccxOPyeXsED86MzkE6u&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1SY6ghjTI6vho5PZX9LXulHQp5S9C_gzi&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1TdHnamcr4GqUfIZqilejpOGBdZ7Exu5Z&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1Ttt6xz7-rJRgUx4hnSqg6T4npefAmgI5&sz=w1000",
+            "https://drive.google.com/thumbnail?id=1T6dq7BXiq865BIa7HP2cviLb4SZ5A2qH&sz=w1000"
         ][i],
         category: ["short-film", "documentary", "music-video"][i % 3]
     }))
@@ -322,7 +327,7 @@ function createCarouselNav(gridId, totalItems) {
     }
 }
 
-// Function to create grid items for images
+// Function to create grid items for images with improved loading
 function createImageItem(item, index) {
     const div = document.createElement("div");
     div.className = "grid-item";
@@ -349,13 +354,12 @@ function createImageItem(item, index) {
     };
     
     tempImg.onerror = function() {
-        console.error(`Failed to load image: ${item.title} from URL: ${item.url}`);
+        console.error(`Failed to load image: ${item.title}`);
         div.querySelector('.loading-spinner').remove();
         div.innerHTML = `<div class="error-message">Failed to load image</div>`;
     };
     
-    // Start loading the image
-    tempImg.src = getDirectLink(item.url);
+    tempImg.src = item.url;
     
     return div;
 }
@@ -460,6 +464,28 @@ function populateGrid(gridId, items, createItemFunction) {
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
+    // Set hero and about images with improved loading
+    const heroImage = document.getElementById('heroImage');
+    const aboutImage = document.getElementById('aboutImage');
+    
+    if (heroImage) {
+        heroImage.crossOrigin = "anonymous";
+        heroImage.onerror = function() {
+            console.error('Failed to load hero image');
+            this.parentElement.innerHTML = '<div class="error-message">Image failed to load</div>';
+        };
+        heroImage.src = getDirectLink(profileImages.hero);
+    }
+    
+    if (aboutImage) {
+        aboutImage.crossOrigin = "anonymous";
+        aboutImage.onerror = function() {
+            console.error('Failed to load about image');
+            this.parentElement.innerHTML = '<div class="error-message">Image failed to load</div>';
+        };
+        aboutImage.src = getDirectLink(profileImages.about);
+    }
+
     // Initialize preloader
     const preloader = document.querySelector('.preloader');
     if (preloader) {
@@ -640,33 +666,5 @@ document.addEventListener('DOMContentLoaded', () => {
             'wrapAround': true,
             'albumLabel': 'Image %1 of %2'
         });
-    }
-
-    // Set profile images for hero and about sections using a temporary image loader
-    const heroImage = document.getElementById('heroImage');
-    const aboutImage = document.getElementById('aboutImage');
-    
-    if (heroImage) {
-        const tempHero = new Image();
-        tempHero.onload = function() {
-            heroImage.src = this.src;
-        };
-        tempHero.onerror = function() {
-            console.error("Failed to load hero image");
-            heroImage.parentElement.innerHTML = '<div class="error-message">Failed to load hero image</div>';
-        };
-        tempHero.src = profileImages.hero;
-    }
-    
-    if (aboutImage) {
-        const tempAbout = new Image();
-        tempAbout.onload = function() {
-            aboutImage.src = this.src;
-        };
-        tempAbout.onerror = function() {
-            console.error("Failed to load about image");
-            aboutImage.parentElement.innerHTML = '<div class="error-message">Failed to load about image</div>';
-        };
-        tempAbout.src = profileImages.about;
     }
 });

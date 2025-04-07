@@ -1054,12 +1054,13 @@ section {
 
 /* Error message */
 .error-message {
-    color: #ff4444;
-    text-align: center;
     padding: 20px;
-    background: rgba(255, 68, 68, 0.1);
+    background-color: #fff3f3;
+    border: 1px solid #ffcdd2;
+    color: #d32f2f;
     border-radius: 8px;
-    margin: 10px;
+    text-align: center;
+    margin: 10px 0;
 }
   
   

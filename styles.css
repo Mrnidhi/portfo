@@ -998,7 +998,7 @@ section {
     }
     
     .social-links a {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     
     .hero-image-container {
@@ -1084,7 +1084,7 @@ section {
 
 .social-links a {
     color: var(--text-color);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     transition: all 0.3s ease;
 }
 
@@ -1108,15 +1108,7 @@ section {
 }
 
 .hero-image-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid var(--primary-color);
-    border-radius: 20px;
-    pointer-events: none;
+    display: none;
 }
 
 .hero-image-container img {
@@ -1134,7 +1126,7 @@ section {
     }
     
     .social-links a {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     
     .hero-image-container {

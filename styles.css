@@ -992,6 +992,19 @@ section {
     .hero-text .subtitle {
         font-size: 1.2rem;
     }
+
+    .social-links {
+        gap: 1.2rem;
+    }
+    
+    .social-links a {
+        font-size: 2.2rem;
+    }
+    
+    .hero-image-container {
+        max-width: 300px;
+        margin: 2rem auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1061,6 +1074,73 @@ section {
     border-radius: 8px;
     text-align: center;
     margin: 10px 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.hero-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .social-links {
+        gap: 1.2rem;
+    }
+    
+    .social-links a {
+        font-size: 2.2rem;
+    }
+    
+    .hero-image-container {
+        max-width: 300px;
+        margin: 2rem auto;
+    }
 }
   
   

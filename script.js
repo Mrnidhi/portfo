@@ -1,42 +1,12 @@
 // Profile Images
 const profileImages = {
-    hero: 'https://drive.google.com/thumbnail?id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3&sz=w1000',
-    about: 'https://drive.google.com/thumbnail?id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue&sz=w1000'
+    hero: 'public/images/me/profile1.jpg',
+    about: 'public/images/me/profile2.jpg'
 };
 
 // Helper function to convert Google Drive link to direct image URL
 function getDirectLink(url) {
-    // If URL is already in direct format but without the correct parameters
-    if (url.includes('drive.google.com/uc?')) {
-        const urlObj = new URL(url);
-        const fileId = urlObj.searchParams.get('id');
-        if (fileId) {
-            return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
-        }
-    }
-    
-    // Check for the /file/d/ pattern
-    const fileMatch = url.match(/\/file\/d\/([^\/]+)/);
-    if (fileMatch && fileMatch[1]) {
-        return `https://drive.google.com/thumbnail?id=${fileMatch[1]}&sz=w1000`;
-    }
-    
-    // Try to extract the file ID from the URL
-    try {
-        const parsedUrl = new URL(url);
-        let fileId = parsedUrl.searchParams.get('id');
-        if (!fileId) {
-            const parts = parsedUrl.pathname.split('/');
-            const dIndex = parts.indexOf('d');
-            if (dIndex !== -1 && parts.length > dIndex + 1) {
-                fileId = parts[dIndex + 1];
-            }
-        }
-        return fileId ? `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000` : url;
-    } catch (e) {
-        console.error("Invalid URL provided:", url);
-        return url;
-    }
+    return url;
 }
 
 // Function to safely get an element by ID
@@ -55,245 +25,256 @@ const ANIMATION_DELAY = 100;
 
 // Data arrays for the portfolio sections
 const photos = [
-    {
-        title: 'Photo 1',
-        url: 'https://drive.google.com/thumbnail?id=1U_qPGm2GVCpfzOrMVeGlE6hPEgtrHAd3&sz=w1000'
-    },
-    {
-        title: 'Photo 2',
-        url: 'https://drive.google.com/thumbnail?id=1UYBVHPz2xX8gV4PQTQuNesrmbfODD1ue&sz=w1000'
-    },
     { 
         title: "Nature Photography",
-        url: "https://drive.google.com/thumbnail?id=1RDnSun2OKFMCnvL8R5c9EFldRE1awsYd&sz=w1000",
+        url: "public/images/photography/photo1.jpg",
         category: "landscape"
     },
-    { 
+    {
         title: "Urban Landscape",
-        url: "https://drive.google.com/thumbnail?id=1R1D0pOgf0lLY_D79mvW5xYcSHUuCofGX&sz=w1000",
+        url: "public/images/photography/photo2.jpeg",
         category: "landscape"
     },
-    { 
+    {
         title: "Event Coverage",
-        url: "https://drive.google.com/thumbnail?id=1R2TOJ8pNNfKYEN0MSQ1pUF_CNmed-4d6&sz=w1000",
+        url: "public/images/photography/photo3.jpeg",
         category: "event"
     },
-    { 
+    {
         title: "Portrait Study",
-        url: "https://drive.google.com/thumbnail?id=1Qh3cUl0kccKFEecqSPi_C88jhOIBbRQY&sz=w1000",
+        url: "public/images/photography/photo4.jpg",
         category: "portrait"
     },
-    { 
+    {
         title: "Landscape View",
-        url: "https://drive.google.com/uc?export=view&id=1RWYyMB7FKTmrePZuCtL9H1T5UYC72Q9S",
+        url: "public/images/photography/photo5.jpg",
         category: "landscape"
     },
-    { 
+    {
         title: "Event Moment",
-        url: "https://drive.google.com/uc?export=view&id=1QW5uAeCXt2QGHU-Yv7TdCdN4YAfaSkqe",
+        url: "public/images/photography/photo6.jpeg",
         category: "event"
     },
-    { 
+    {
         title: "Portrait Session",
-        url: "https://drive.google.com/uc?export=view&id=1QNTiH4YyuZGpgXyZaXCi2mUrSr75lxLk",
+        url: "public/images/photography/photo7.jpeg",
         category: "portrait"
     },
-    { 
+    {
         title: "Event Photography",
-        url: "https://drive.google.com/uc?export=view&id=1QfdvZz6cw6-BX3gImx73ozls-FA4jaJH",
+        url: "public/images/photography/photo8.jpeg",
         category: "event"
     },
-    { 
+    {
         title: "Landscape Scene",
-        url: "https://drive.google.com/uc?export=view&id=1QvptH7GEFuYs9579x66wgE4aTndrtgwB",
+        url: "public/images/photography/photo9.jpeg",
         category: "landscape"
     },
-    { 
+    {
         title: "Portrait Art",
-        url: "https://drive.google.com/uc?export=view&id=1RKj3vX6PpecVd1NfAdHZmpr74r4TCjeb",
+        url: "public/images/photography/photo10.jpeg",
         category: "portrait"
     },
-    { 
+    {
         title: "Event Capture",
-        url: "https://drive.google.com/uc?export=view&id=1QKm96SE7qjpYJTcDZZUES384F8A99cNE",
+        url: "public/images/photography/photo11.jpeg",
         category: "event"
     },
-    { 
+    {
         title: "Landscape Beauty",
-        url: "https://drive.google.com/uc?export=view&id=1RMWTJaNR60NbG8S15wBH2r7WikTOgMpa",
+        url: "public/images/photography/photo12.jpg",
         category: "landscape"
     },
-    { 
+    {
         title: "Portrait Style",
-        url: "https://drive.google.com/uc?export=view&id=1QYKJRHUyShrfwgHnuM21cEuwd4gccMnX",
+        url: "public/images/photography/photo13.jpeg",
         category: "portrait"
     },
-    { 
+    {
         title: "Event Highlights",
-        url: "https://drive.google.com/uc?export=view&id=1QUlWySKAF_S3p3V_9nrAy5R3jZDseKbh",
+        url: "public/images/photography/photo14.jpg",
         category: "event"
     },
-    { 
-        title: "Landscape Vista",
-        url: "https://drive.google.com/uc?export=view&id=1R97Uj7DPblwnb5k28bYxaSD2aM3DIde3",
-        category: "landscape"
-    },
-    { 
+    {
         title: "Portrait Mood",
-        url: "https://drive.google.com/uc?export=view&id=1Qika9tOCNwbzOYFPF-ABftWIra6Z8zob",
+        url: "public/images/photography/photo15.jpg",
         category: "portrait"
     },
-    { 
+    {
         title: "Event Story",
-        url: "https://drive.google.com/uc?export=view&id=1RKheUiGQEiyQJOtqI-tqDQcTwdp77bCA",
+        url: "public/images/photography/photo16.jpg",
         category: "event"
-    },
-    { 
-        title: "Landscape Panorama",
-        url: "https://drive.google.com/uc?export=view&id=1R3G40PkRbTdX05TOYtNTnhVt3e52XyU2",
-        category: "landscape"
     }
 ];
 
 const posters = [
-    { 
+    {
         title: "Short Film Poster 1",
-        url: "https://drive.google.com/thumbnail?id=1TY4pTWWu2hDVF35VCNO8E3KJ98HuzKvF&sz=w1000",
+        url: "public/images/posters/poster1.jpg",
         category: "short-film"
     },
-    { 
+    {
         title: "Documentary Poster 1",
-        url: "https://drive.google.com/thumbnail?id=1ShNJb3fuLmV1E7-xrNBpw4Ms0laL3B_G&sz=w1000",
+        url: "public/images/posters/poster2.jpg",
         category: "documentary"
     },
-    { 
+    {
         title: "Music Video Poster 1",
-        url: "https://drive.google.com/thumbnail?id=1SmLyTYzAzbykGmAuObzswJkW3Mfetcxg&sz=w1000",
+        url: "public/images/posters/poster3.png",
         category: "music-video"
     },
-    // Adding the rest of the posters with appropriate categories
-    ...Array.from({ length: 24 }, (_, i) => ({
-        title: `Cinematic Work ${i + 4}`,
-        url: [
-            "https://drive.google.com/thumbnail?id=1SX-oULqD55nGNLEpY--P49ARVOfAK1vM&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1Tdzk7eGm-klR-K5X5_-FlV-wPrS3_M3G&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1U0WllD2X_Wm9GQ1r-IhTahujTb_ySUkn&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1SXgXXwqugtfOuvmKWa1v1-ofJU1OG8Zo&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1St5ROAmf3XYhjO9naTLnNpoFJEknA8s2&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TsE59PsJxg3arXGM71Ji174nkXJ_Riyz&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TVJcttjpBRDSYmSlvRjbOUqogivvpBT3&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1SmP5MrzUA9aI2yMwHxztDN1DAWc5eIht&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1SR14ylOCK2zb6qOVnY0Jw6cAUVQ_GL4f&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1ShJNDbHtve-JnNDLkr4Na8gThy_8jTf-&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1Ss_2BA2KlumOmOOq9hvOK_aZqLm7DTd5&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1SHTwZtq1h9-Xla42m5m5FTQn2mmhvkpl&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TgbNjSjkj6eIARCpk2FATwKQx0SIPoJ-&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1Tr_hMpKC5ShksyZ8UYsw4BzXbEy4IhR0&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1T55fOoH3KWzfus3RJr42La7sp-K2A7Qr&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1THGBanNmuK7LAhpUrejKVIzmk2KTzWVw&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1Tj9NJnxsfthMEhroe4QtySuxuW9im9wy&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TgHj1BfX50nJE935evou4hNv7qH91aWG&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TfP1KdLwsEjWkB4XyEtI6kjx8uS_Q3lV&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TZtzwQtfd6nnXccxOPyeXsED86MzkE6u&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1SY6ghjTI6vho5PZX9LXulHQp5S9C_gzi&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1TdHnamcr4GqUfIZqilejpOGBdZ7Exu5Z&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1Ttt6xz7-rJRgUx4hnSqg6T4npefAmgI5&sz=w1000",
-            "https://drive.google.com/thumbnail?id=1T6dq7BXiq865BIa7HP2cviLb4SZ5A2qH&sz=w1000"
-        ][i],
-        category: ["short-film", "documentary", "music-video"][i % 3]
-    }))
+    {
+        title: "Short Film Poster 2",
+        url: "public/images/posters/poster4.jpg",
+        category: "short-film"
+    },
+    {
+        title: "Documentary Poster 2",
+        url: "public/images/posters/poster5.png",
+        category: "documentary"
+    },
+    {
+        title: "Music Video Poster 2",
+        url: "public/images/posters/poster6.png",
+        category: "music-video"
+    },
+    {
+        title: "Short Film Poster 3",
+        url: "public/images/posters/poster7.jpg",
+        category: "short-film"
+    },
+    {
+        title: "Documentary Poster 3",
+        url: "public/images/posters/poster8.png",
+        category: "documentary"
+    },
+    {
+        title: "Music Video Poster 3",
+        url: "public/images/posters/poster9.png",
+        category: "music-video"
+    },
+    {
+        title: "Short Film Poster 4",
+        url: "public/images/posters/poster10.jpg",
+        category: "short-film"
+    },
+    {
+        title: "Documentary Poster 4",
+        url: "public/images/posters/poster11.png",
+        category: "documentary"
+    },
+    {
+        title: "Music Video Poster 4",
+        url: "public/images/posters/poster12.jpg",
+        category: "music-video"
+    },
+    {
+        title: "Short Film Poster 5",
+        url: "public/images/posters/poster13.png",
+        category: "short-film"
+    },
+    {
+        title: "Documentary Poster 5",
+        url: "public/images/posters/poster14.png",
+        category: "documentary"
+    },
+    {
+        title: "Music Video Poster 5",
+        url: "public/images/posters/poster15.jpg",
+        category: "music-video"
+    }
 ];
 
 const videos = [
     {
-        title: "Bird Capture",
-        videoSrc: "https://player.vimeo.com/video/1072700168?h=f8bcd08d19",
-        thumbnail: "https://drive.google.com/uc?export=view&id=1RTHuupw0lsNmgkGulR2qX2IvbFJmuWBx",
-        category: "nature"
+        title: "Short Film 1",
+        thumbnailUrl: "public/images/thumbnails/video1.png",
+        videoSrc: "https://player.vimeo.com/video/123456789",
+        category: "short-film"
     },
     {
-        title: "Lola Cute Reel",
-        videoSrc: "https://player.vimeo.com/video/1072700174?h=2ea0fb956a",
-        thumbnail: "https://drive.google.com/uc?export=view&id=1S1tfpCMa1Y9qZ0m47B8e3FQijQUMdkif",
-        category: "commercial"
-    },
-    {
-        title: "Jnana Cauvery College Event",
-        videoSrc: "https://player.vimeo.com/video/1072700186?h=cc8418b575",
-        thumbnail: "https://drive.google.com/uc?export=view&id=1Rmd_88IcQgXdO7b3ZAErUAKNBPO-KA3V",
-        category: "event"
-    },
-    {
-        title: "Jnana Cauvery Logo Launch Event",
-        videoSrc: "https://player.vimeo.com/video/1072700193?h=dfbf09124e",
-        thumbnail: "https://drive.google.com/file/d/1RbYupji-yu0MzXJa5P3uChtAVL5hB-wu/view?usp=sharing",
-        category: "event"
-    },
-    {
-        title: "PESCO Bike Stunt Event",
-        videoSrc: "https://player.vimeo.com/video/1072700200?h=0218dd1018",
-        thumbnail: "https://drive.google.com/file/d/1RzQjGR-N-4YR-hXzRnG_qxVdDGi3Hi75/view?usp=sharing",
-        category: "event"
-    },
-    {
-        title: "PES Electrical Department",
-        videoSrc: "https://player.vimeo.com/video/1072700205?h=ee89663249",
-        thumbnail: "https://drive.google.com/file/d/1RVllG0kincokjfuGwlvb9julYoWPYpbR/view?usp=sharing",
-        category: "commercial"
-    },
-    {
-        title: "Ethnic Day Event",
-        videoSrc: "https://player.vimeo.com/video/1072700213?h=3f82b593cd",
-        thumbnail: "https://drive.google.com/file/d/1QiMjeoaPiR0pPvJJwpoB2S47AmQJt018/view?usp=sharing",
-        category: "event"
-    },
-    {
-        title: "Kings Coffee Promotional Video",
-        videoSrc: "https://player.vimeo.com/video/1072700220?h=38f2e053f5",
-        thumbnail: "https://drive.google.com/file/d/1R8074im1eg_vcmgh5d2WmUDoQ0JYHXhu/view?usp=sharing",
-        category: "commercial"
-    },
-    {
-        title: "Jnana Cauvery Logo",
-        videoSrc: "https://player.vimeo.com/video/1072700260?h=096324d4bd",
-        thumbnail: "https://drive.google.com/file/d/1RfGkTnbwMpD5KSoESCsJknQIO779cIk2/view?usp=sharing",
-        category: "commercial"
-    },
-    {
-        title: "Coorg Cinematic Reel",
-        videoSrc: "https://player.vimeo.com/video/1072700265?h=822b06e344",
-        thumbnail: "https://drive.google.com/file/d/1Rg0cpUBuuocuF9gUL6ZYZF1yxlk5hIzb/view?usp=sharing",
-        category: "cinematic"
-    },
-    {
-        title: "Promotional Video",
-        videoSrc: "https://player.vimeo.com/video/1072700279?h=645af8094b",
-        thumbnail: "https://drive.google.com/file/d/1RdTu8c01c4rioEpCqba_h4bsC0k_tflL/view?usp=sharing",
-        category: "commercial"
-    },
-    {
-        title: "Pre-Wedding Video Palace",
-        videoSrc: "https://player.vimeo.com/video/1072700291?h=73ea988df6",
-        thumbnail: "https://drive.google.com/file/d/1RlVgeMte0tfp5c5NaGDu9R1hTklwd_t3/view?usp=sharing",
-        category: "wedding"
-    },
-    {
-        title: "Pre-Wedding Video Beach",
-        videoSrc: "https://player.vimeo.com/video/1072700300?h=9f6d796a5e",
-        thumbnail: "https://drive.google.com/file/d/1RMY3LczK2Zzelr4R83e6TLxvdrpt5jpU/view?usp=sharing",
-        category: "wedding"
-    },
-    {
-        title: "Documentary Video",
-        videoSrc: "https://player.vimeo.com/video/1072700308?h=5b766692eb",
-        thumbnail: "https://drive.google.com/file/d/1QJ2T7HeJ8ZpywG80i0Iy2ErYp-7hGnP6/view?usp=sharing",
+        title: "Documentary 1",
+        thumbnailUrl: "public/images/thumbnails/video2.png",
+        videoSrc: "https://player.vimeo.com/video/234567890",
         category: "documentary"
     },
     {
-        title: "PESCO Event Video Frames",
-        videoSrc: "https://player.vimeo.com/video/1072700316?h=768ad89167",
-        thumbnail: "https://drive.google.com/file/d/1Rw-dN1hLXoh-QtLN9wzapNSC3je6dkT0/view?usp=sharing",
-        category: "event"
+        title: "Music Video 1",
+        thumbnailUrl: "public/images/thumbnails/video3.png",
+        videoSrc: "https://player.vimeo.com/video/345678901",
+        category: "music-video"
+    },
+    {
+        title: "Short Film 2",
+        thumbnailUrl: "public/images/thumbnails/video4.png",
+        videoSrc: "https://player.vimeo.com/video/456789012",
+        category: "short-film"
+    },
+    {
+        title: "Documentary 2",
+        thumbnailUrl: "public/images/thumbnails/video5.png",
+        videoSrc: "https://player.vimeo.com/video/567890123",
+        category: "documentary"
+    },
+    {
+        title: "Music Video 2",
+        thumbnailUrl: "public/images/thumbnails/video6.png",
+        videoSrc: "https://player.vimeo.com/video/678901234",
+        category: "music-video"
+    },
+    {
+        title: "Short Film 3",
+        thumbnailUrl: "public/images/thumbnails/video7.png",
+        videoSrc: "https://player.vimeo.com/video/789012345",
+        category: "short-film"
+    },
+    {
+        title: "Documentary 3",
+        thumbnailUrl: "public/images/thumbnails/video8.png",
+        videoSrc: "https://player.vimeo.com/video/890123456",
+        category: "documentary"
+    },
+    {
+        title: "Music Video 3",
+        thumbnailUrl: "public/images/thumbnails/video9.png",
+        videoSrc: "https://player.vimeo.com/video/901234567",
+        category: "music-video"
+    },
+    {
+        title: "Short Film 4",
+        thumbnailUrl: "public/images/thumbnails/video10.png",
+        videoSrc: "https://player.vimeo.com/video/012345678",
+        category: "short-film"
+    },
+    {
+        title: "Documentary 4",
+        thumbnailUrl: "public/images/thumbnails/video11.png",
+        videoSrc: "https://player.vimeo.com/video/123456780",
+        category: "documentary"
+    },
+    {
+        title: "Music Video 4",
+        thumbnailUrl: "public/images/thumbnails/video12.png",
+        videoSrc: "https://player.vimeo.com/video/234567801",
+        category: "music-video"
+    },
+    {
+        title: "Short Film 5",
+        thumbnailUrl: "public/images/thumbnails/video13.png",
+        videoSrc: "https://player.vimeo.com/video/345678012",
+        category: "short-film"
+    },
+    {
+        title: "Documentary 5",
+        thumbnailUrl: "public/images/thumbnails/video14.png",
+        videoSrc: "https://player.vimeo.com/video/456789123",
+        category: "documentary"
+    },
+    {
+        title: "Music Video 5",
+        thumbnailUrl: "public/images/thumbnails/video15.png",
+        videoSrc: "https://player.vimeo.com/video/567890234",
+        category: "music-video"
     }
 ];
 

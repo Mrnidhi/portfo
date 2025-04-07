@@ -373,13 +373,13 @@ function createVideoItem(video, index) {
     };
     
     tempImg.onerror = function() {
-        console.error(`Failed to load thumbnail: ${video.title} from URL: ${video.thumbnail}`);
+        console.error(`Failed to load thumbnail: ${video.title} from URL: ${video.thumbnailUrl}`);
         div.querySelector('.loading-spinner').remove();
         div.innerHTML = `<div class="error-message">Failed to load thumbnail</div>`;
     };
     
     // Start loading the thumbnail
-    tempImg.src = getDirectLink(video.thumbnail);
+    tempImg.src = getDirectLink(video.thumbnailUrl);
     
     // Add click event for video modal
     div.addEventListener("click", () => {

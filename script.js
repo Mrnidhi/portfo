@@ -112,27 +112,27 @@ const photos = [
     },
     {
         title: "Cultural Event",
-        url: "public/images/photography/photo18.jpeg",
+        url: "public/images/photography/photo18.jpg",
         category: "event"
     },
     {
         title: "Street Portrait",
-        url: "public/images/photography/photo19.jpeg",
+        url: "public/images/photography/photo19.jpg",
         category: "portrait"
     },
     {
         title: "City Life",
-        url: "public/images/photography/photo20.jpeg",
+        url: "public/images/photography/photo20.jpg",
         category: "landscape"
     },
     {
         title: "Festival Moments",
-        url: "public/images/photography/photo21.jpeg",
+        url: "public/images/photography/photo21.jpg",
         category: "event"
     },
     {
         title: "Character Study",
-        url: "public/images/photography/photo22.jpeg",
+        url: "public/images/photography/photo22.jpg",
         category: "portrait"
     },
     {
@@ -390,11 +390,12 @@ function createImageItem(item, index) {
     };
     
     tempImg.onerror = function() {
-        console.error(`Failed to load image: ${item.title}`);
+        console.error(`Failed to load image: ${item.title} from URL: ${item.url}`);
         div.querySelector('.loading-spinner').remove();
-        div.innerHTML = `<div class="error-message">Failed to load image</div>`;
+        div.innerHTML = `<div class="error-message">Failed to load: ${item.title}</div>`;
     };
     
+    // Start loading the image
     tempImg.src = item.url;
     
     return div;

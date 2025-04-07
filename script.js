@@ -32,12 +32,12 @@ const photos = [
     },
     {
         title: "Urban Landscape",
-        url: "public/images/photography/photo2.jpeg",
+        url: "public/images/photography/photo2.jpg",
         category: "landscape"
     },
     {
         title: "Event Coverage",
-        url: "public/images/photography/photo3.jpeg",
+        url: "public/images/photography/photo3.jpg",
         category: "event"
     },
     {
@@ -52,32 +52,32 @@ const photos = [
     },
     {
         title: "Event Moment",
-        url: "public/images/photography/photo6.jpeg",
+        url: "public/images/photography/photo6.jpg",
         category: "event"
     },
     {
         title: "Portrait Session",
-        url: "public/images/photography/photo7.jpeg",
+        url: "public/images/photography/photo7.jpg",
         category: "portrait"
     },
     {
         title: "Event Photography",
-        url: "public/images/photography/photo8.jpeg",
+        url: "public/images/photography/photo8.jpg",
         category: "event"
     },
     {
         title: "Landscape Scene",
-        url: "public/images/photography/photo9.jpeg",
+        url: "public/images/photography/photo9.jpg",
         category: "landscape"
     },
     {
         title: "Portrait Art",
-        url: "public/images/photography/photo10.jpeg",
+        url: "public/images/photography/photo10.jpg",
         category: "portrait"
     },
     {
         title: "Event Capture",
-        url: "public/images/photography/photo11.jpeg",
+        url: "public/images/photography/photo11.jpg",
         category: "event"
     },
     {
@@ -87,7 +87,7 @@ const photos = [
     },
     {
         title: "Portrait Style",
-        url: "public/images/photography/photo13.jpeg",
+        url: "public/images/photography/photo13.jpg",
         category: "portrait"
     },
     {
@@ -103,6 +103,61 @@ const photos = [
     {
         title: "Event Story",
         url: "public/images/photography/photo16.jpg",
+        category: "event"
+    },
+    {
+        title: "Urban Exploration",
+        url: "public/images/photography/photo17.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Cultural Event",
+        url: "public/images/photography/photo18.jpeg",
+        category: "event"
+    },
+    {
+        title: "Street Portrait",
+        url: "public/images/photography/photo19.jpeg",
+        category: "portrait"
+    },
+    {
+        title: "City Life",
+        url: "public/images/photography/photo20.jpeg",
+        category: "landscape"
+    },
+    {
+        title: "Festival Moments",
+        url: "public/images/photography/photo21.jpeg",
+        category: "event"
+    },
+    {
+        title: "Character Study",
+        url: "public/images/photography/photo22.jpeg",
+        category: "portrait"
+    },
+    {
+        title: "Architectural Beauty",
+        url: "public/images/photography/photo23.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Natural Wonders",
+        url: "public/images/photography/photo24.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Candid Moments",
+        url: "public/images/photography/photo25.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Urban Patterns",
+        url: "public/images/photography/photo26.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Event Atmosphere",
+        url: "public/images/photography/photo27.jpg",
         category: "event"
     }
 ];

@@ -563,6 +563,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initialize video modal
+    const modal = getElementById("videoModal");
+    const closeBtn = modal ? modal.querySelector(".close") : null;
+    const videoContainer = getElementById("videoPlayerContainer");
+
+    // Ensure modal is hidden on page load
+    if (modal) {
+        modal.style.display = "none";
+    }
+    if (videoContainer) {
+        videoContainer.innerHTML = "";
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            if (modal && videoContainer) {
+                modal.style.display = "none";
+                videoContainer.innerHTML = "";
+            }
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            if (modal && videoContainer) {
+                modal.style.display = "none";
+                videoContainer.innerHTML = "";
+            }
+        }
+    });
+
     // Populate grids
     if (photos) {
         populateGrid("photoGrid", photos, createImageItem);
@@ -575,31 +607,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (posters) {
         populateGrid("posterGrid", posters, createImageItem);
     }
-
-    // Initialize video modal
-    const modal = getElementById("videoModal");
-    const closeBtn = modal ? modal.querySelector(".close") : null;
-
-    if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            const modalContent = getElementById("videoPlayerContainer");
-            if (modal && modalContent) {
-                modal.style.display = "none";
-                modalContent.innerHTML = "";
-            }
-        });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            const modalContent = getElementById("videoPlayerContainer");
-            if (modal && modalContent) {
-                modal.style.display = "none";
-                modalContent.innerHTML = "";
-            }
-        }
-    });
 
     // Theme Toggle
     const themeToggle = document.querySelector('.theme-toggle');

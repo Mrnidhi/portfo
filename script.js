@@ -244,91 +244,91 @@ const videos = [
     {
         title: "Short Film 1",
         thumbnailUrl: "public/images/thumbnails/video1.png",
-        videoSrc: "https://player.vimeo.com/video/123456789",
+        videoSrc: "public/videos/video1.mp4",
         category: "short-film"
     },
     {
         title: "Documentary 1",
         thumbnailUrl: "public/images/thumbnails/video2.png",
-        videoSrc: "https://player.vimeo.com/video/234567890",
+        videoSrc: "public/videos/video2.mp4",
         category: "documentary"
     },
     {
         title: "Music Video 1",
         thumbnailUrl: "public/images/thumbnails/video3.png",
-        videoSrc: "https://player.vimeo.com/video/345678901",
+        videoSrc: "public/videos/video3.mp4",
         category: "music-video"
     },
     {
         title: "Short Film 2",
         thumbnailUrl: "public/images/thumbnails/video4.png",
-        videoSrc: "https://player.vimeo.com/video/456789012",
+        videoSrc: "public/videos/video4.mp4",
         category: "short-film"
     },
     {
         title: "Documentary 2",
         thumbnailUrl: "public/images/thumbnails/video5.png",
-        videoSrc: "https://player.vimeo.com/video/567890123",
+        videoSrc: "public/videos/video5.mp4",
         category: "documentary"
     },
     {
         title: "Music Video 2",
         thumbnailUrl: "public/images/thumbnails/video6.png",
-        videoSrc: "https://player.vimeo.com/video/678901234",
+        videoSrc: "public/videos/video6.mp4",
         category: "music-video"
     },
     {
         title: "Short Film 3",
         thumbnailUrl: "public/images/thumbnails/video7.png",
-        videoSrc: "https://player.vimeo.com/video/789012345",
+        videoSrc: "public/videos/video7.mp4",
         category: "short-film"
     },
     {
         title: "Documentary 3",
         thumbnailUrl: "public/images/thumbnails/video8.png",
-        videoSrc: "https://player.vimeo.com/video/890123456",
+        videoSrc: "https://www.youtube.com/embed/fEnfH6wpyxY",
         category: "documentary"
     },
     {
         title: "Music Video 3",
         thumbnailUrl: "public/images/thumbnails/video9.png",
-        videoSrc: "https://player.vimeo.com/video/901234567",
+        videoSrc: "public/videos/video9.mp4",
         category: "music-video"
     },
     {
         title: "Short Film 4",
         thumbnailUrl: "public/images/thumbnails/video10.png",
-        videoSrc: "https://player.vimeo.com/video/012345678",
+        videoSrc: "public/videos/video10.mp4",
         category: "short-film"
     },
     {
         title: "Documentary 4",
         thumbnailUrl: "public/images/thumbnails/video11.png",
-        videoSrc: "https://player.vimeo.com/video/123456780",
+        videoSrc: "public/videos/video11.mp4",
         category: "documentary"
     },
     {
         title: "Music Video 4",
         thumbnailUrl: "public/images/thumbnails/video12.png",
-        videoSrc: "https://player.vimeo.com/video/234567801",
+        videoSrc: "public/videos/video12.mp4",
         category: "music-video"
     },
     {
         title: "Short Film 5",
         thumbnailUrl: "public/images/thumbnails/video13.png",
-        videoSrc: "https://player.vimeo.com/video/345678012",
+        videoSrc: "public/videos/video13.mp4",
         category: "short-film"
     },
     {
         title: "Documentary 5",
         thumbnailUrl: "public/images/thumbnails/video14.png",
-        videoSrc: "https://player.vimeo.com/video/456789123",
+        videoSrc: "public/videos/video14.mp4",
         category: "documentary"
     },
     {
         title: "Music Video 5",
         thumbnailUrl: "public/images/thumbnails/video15.png",
-        videoSrc: "https://player.vimeo.com/video/567890234",
+        videoSrc: "public/videos/video15.mp4",
         category: "music-video"
     }
 ];
@@ -451,16 +451,38 @@ function openVideoModal(videoSrc) {
     const videoContainer = getElementById('videoPlayerContainer');
     
     if (modal && videoContainer) {
-        videoContainer.innerHTML = `
-            <iframe 
-                src="${videoSrc}" 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-                allowfullscreen
-            ></iframe>`;
-        modal.style.display = 'block';
+        // Check if the video source is a YouTube URL
+        if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
+            // Extract video ID from YouTube URL
+            const videoId = videoSrc.split('/').pop().split('?')[0];
+            videoContainer.innerHTML = `
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    style="border: none;"
+                ></iframe>`;
+        } else {
+            // Handle local MP4 files
+            videoContainer.innerHTML = `
+                <video controls autoplay class="modal-video" style="width: 100%; height: auto;">
+                    <source src="${videoSrc}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>`;
+        }
+        
+        modal.style.display = 'flex';
+        
+        // Add event listener to close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                videoContainer.innerHTML = '';
+            }
+        });
     }
 }
 

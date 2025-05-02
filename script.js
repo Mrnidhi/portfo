@@ -524,6 +524,11 @@ function createImageItem(item, index) {
     div.className = "grid-item";
     div.style.animationDelay = `${index * ANIMATION_DELAY}ms`;
     
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.setAttribute('data-lightbox', 'gallery');
+    link.setAttribute('data-title', item.title);
+    
     const img = document.createElement("img");
     img.alt = item.title;
     img.loading = "lazy";
@@ -537,11 +542,8 @@ function createImageItem(item, index) {
     tempImg.onload = function() {
         div.querySelector('.loading-spinner').remove();
         img.src = this.src;
-        div.appendChild(img);
-        
-        // Add lightbox attributes
-        img.setAttribute('data-lightbox', 'gallery');
-        img.setAttribute('data-title', item.title);
+        link.appendChild(img);
+        div.appendChild(link);
     };
     
     tempImg.onerror = function() {

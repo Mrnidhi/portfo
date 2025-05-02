@@ -207,12 +207,12 @@ const photos = [
     },
     {
         title: "Event Highlights",
-        url: "public/images/photography/photo37.jpeg",
+        url: "public/images/photography/photo37.jpg",
         category: "event"
     },
     {
         title: "Portrait Mood",
-        url: "public/images/photography/photo38.jpeg",
+        url: "public/images/photography/photo38.jpg",
         category: "portrait"
     },
     {
@@ -227,27 +227,27 @@ const photos = [
     },
     {
         title: "Cultural Event",
-        url: "public/images/photography/photo41.jpeg",
+        url: "public/images/photography/photo41.jpg",
         category: "event"
     },
     {
         title: "Street Portrait",
-        url: "public/images/photography/photo42.jpeg",
+        url: "public/images/photography/photo42.jpg",
         category: "portrait"
     },
     {
         title: "City Life",
-        url: "public/images/photography/photo43.jpeg",
+        url: "public/images/photography/photo43.jpg",
         category: "landscape"
     },
     {
         title: "Festival Moments",
-        url: "public/images/photography/photo44.jpeg",
+        url: "public/images/photography/photo44.jpg",
         category: "event"
     },
     {
         title: "Character Study",
-        url: "public/images/photography/photo45.jpeg",
+        url: "public/images/photography/photo45.jpg",
         category: "portrait"
     },
     {

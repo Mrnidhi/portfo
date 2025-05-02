@@ -288,29 +288,35 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script src="script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            offset: 100,
-            once: true
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                offset: 100,
+                once: true
+            });
 
-        // Initialize Lightbox with enhanced options
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'albumLabel': 'Image %1 of %2',
-            'fadeDuration': 300,
-            'imageFadeDuration': 300,
-            'positionFromTop': 100,
-            'alwaysShowNavOnTouchDevices': true,
-            'disableScrolling': true,
-            'maxWidth': 1200,
-            'maxHeight': 800,
-            'clickToClose': true
+            // Initialize Lightbox
+            if (typeof lightbox !== 'undefined') {
+                lightbox.option({
+                    'resizeDuration': 200,
+                    'wrapAround': true,
+                    'albumLabel': 'Image %1 of %2',
+                    'fadeDuration': 300,
+                    'imageFadeDuration': 300,
+                    'positionFromTop': 100,
+                    'alwaysShowNavOnTouchDevices': true,
+                    'disableScrolling': true,
+                    'maxWidth': 1200,
+                    'maxHeight': 800,
+                    'clickToClose': true
+                });
+            }
         });
     </script>
   </body>

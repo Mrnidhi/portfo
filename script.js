@@ -159,6 +159,161 @@ const photos = [
         title: "Event Atmosphere",
         url: "public/images/photography/photo27.jpg",
         category: "event"
+    },
+    {
+        title: "Landscape View",
+        url: "public/images/photography/photo28.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Event Moment",
+        url: "public/images/photography/photo29.jpg",
+        category: "event"
+    },
+    {
+        title: "Portrait Session",
+        url: "public/images/photography/photo30.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Event Photography",
+        url: "public/images/photography/photo31.jpg",
+        category: "event"
+    },
+    {
+        title: "Landscape Scene",
+        url: "public/images/photography/photo32.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Portrait Art",
+        url: "public/images/photography/photo33.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Event Capture",
+        url: "public/images/photography/photo34.jpg",
+        category: "event"
+    },
+    {
+        title: "Landscape Beauty",
+        url: "public/images/photography/photo35.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Portrait Style",
+        url: "public/images/photography/photo36.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Event Highlights",
+        url: "public/images/photography/photo37.jpeg",
+        category: "event"
+    },
+    {
+        title: "Portrait Mood",
+        url: "public/images/photography/photo38.jpeg",
+        category: "portrait"
+    },
+    {
+        title: "Event Story",
+        url: "public/images/photography/photo39.jpg",
+        category: "event"
+    },
+    {
+        title: "Urban Exploration",
+        url: "public/images/photography/photo40.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Cultural Event",
+        url: "public/images/photography/photo41.jpeg",
+        category: "event"
+    },
+    {
+        title: "Street Portrait",
+        url: "public/images/photography/photo42.jpeg",
+        category: "portrait"
+    },
+    {
+        title: "City Life",
+        url: "public/images/photography/photo43.jpeg",
+        category: "landscape"
+    },
+    {
+        title: "Festival Moments",
+        url: "public/images/photography/photo44.jpeg",
+        category: "event"
+    },
+    {
+        title: "Character Study",
+        url: "public/images/photography/photo45.jpeg",
+        category: "portrait"
+    },
+    {
+        title: "Architectural Beauty",
+        url: "public/images/photography/photo46.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Natural Wonders",
+        url: "public/images/photography/photo47.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Candid Moments",
+        url: "public/images/photography/photo48.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Urban Patterns",
+        url: "public/images/photography/photo49.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Event Atmosphere",
+        url: "public/images/photography/photo50.jpg",
+        category: "event"
+    },
+    {
+        title: "Landscape View",
+        url: "public/images/photography/photo51.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Event Moment",
+        url: "public/images/photography/photo52.jpg",
+        category: "event"
+    },
+    {
+        title: "Portrait Session",
+        url: "public/images/photography/photo53.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Event Photography",
+        url: "public/images/photography/photo54.jpg",
+        category: "event"
+    },
+    {
+        title: "Landscape Scene",
+        url: "public/images/photography/photo55.jpg",
+        category: "landscape"
+    },
+    {
+        title: "Portrait Art",
+        url: "public/images/photography/photo56.jpg",
+        category: "portrait"
+    },
+    {
+        title: "Event Capture",
+        url: "public/images/photography/photo57.jpg",
+        category: "event"
+    },
+    {
+        title: "Landscape Beauty",
+        url: "public/images/photography/photo58.jpg",
+        category: "landscape"
     }
 ];
 

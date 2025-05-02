@@ -594,20 +594,46 @@ function createVideoItem(video, index) {
     // Start loading the thumbnail
     tempImg.src = getDirectLink(video.thumbnailUrl);
     
-    // Add click event for video modal
+    // Add click event for video modal with index
     div.addEventListener("click", () => {
-        openVideoModal(video.videoSrc);
+        openVideoModal(video.videoSrc, index);
     });
     
     return div;
 }
 
-// Function to open video modal
-function openVideoModal(videoSrc) {
+// Function to open video modal with navigation
+function openVideoModal(videoSrc, currentIndex) {
     const modal = getElementById('videoModal');
     const videoContainer = getElementById('videoPlayerContainer');
     
     if (modal && videoContainer) {
+        // Create navigation buttons
+        const prevButton = document.createElement('button');
+        prevButton.className = 'video-nav prev';
+        prevButton.innerHTML = '❮';
+        prevButton.style.display = currentIndex > 0 ? 'block' : 'none';
+        
+        const nextButton = document.createElement('button');
+        nextButton.className = 'video-nav next';
+        nextButton.innerHTML = '❯';
+        nextButton.style.display = currentIndex < videos.length - 1 ? 'block' : 'none';
+        
+        // Add click events for navigation
+        prevButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentIndex > 0) {
+                openVideoModal(videos[currentIndex - 1].videoSrc, currentIndex - 1);
+            }
+        });
+        
+        nextButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentIndex < videos.length - 1) {
+                openVideoModal(videos[currentIndex + 1].videoSrc, currentIndex + 1);
+            }
+        });
+
         // Check if the video source is a YouTube URL
         if (videoSrc.includes('youtube.com') || videoSrc.includes('youtu.be')) {
             // Extract video ID from YouTube URL
@@ -631,6 +657,10 @@ function openVideoModal(videoSrc) {
                 </video>`;
         }
         
+        // Add navigation buttons to modal
+        videoContainer.appendChild(prevButton);
+        videoContainer.appendChild(nextButton);
+        
         modal.style.display = 'flex';
         
         // Add event listener to close modal when clicking outside
@@ -638,6 +668,20 @@ function openVideoModal(videoSrc) {
             if (e.target === modal) {
                 modal.style.display = 'none';
                 videoContainer.innerHTML = '';
+            }
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    openVideoModal(videos[currentIndex - 1].videoSrc, currentIndex - 1);
+                } else if (e.key === 'ArrowRight' && currentIndex < videos.length - 1) {
+                    openVideoModal(videos[currentIndex + 1].videoSrc, currentIndex + 1);
+                } else if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                    videoContainer.innerHTML = '';
+                }
             }
         });
     }

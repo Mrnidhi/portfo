@@ -1242,5 +1242,53 @@ section {
 .lb-nav {
     cursor: default;
 }
+
+/* Video Navigation Buttons */
+.video-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.video-nav:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.video-nav.prev {
+    left: 20px;
+}
+
+.video-nav.next {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .video-nav {
+        width: 30px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .video-nav.prev {
+        left: 10px;
+    }
+
+    .video-nav.next {
+        right: 10px;
+    }
+}
   
   

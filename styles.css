@@ -1207,23 +1207,18 @@ section {
 }
 
 /* Lightbox Custom Styles */
-.lb-data .lb-caption {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #fff;
-}
-
+.lb-data .lb-caption,
 .lb-data .lb-number {
-    font-size: 0.9rem;
-    color: #fff;
-    opacity: 0.8;
+    display: none !important;
 }
 
-.lb-closeContainer {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
+.lb-dataContainer {
+    display: none !important;
+}
+
+.lb-outerContainer {
+    border-radius: 0;
+    background-color: transparent;
 }
 
 .lb-nav a.lb-prev,
@@ -1237,20 +1232,6 @@ section {
     opacity: 1;
 }
 
-.lb-outerContainer {
-    border-radius: 8px;
-    background-color: transparent;
-}
-
-.lb-dataContainer {
-    border-radius: 0 0 8px 8px;
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.lb-data {
-    padding: 15px;
-}
-
 /* Make the entire lightbox overlay clickable */
 .lb-overlay {
     cursor: pointer;
@@ -1258,7 +1239,6 @@ section {
 
 /* Ensure the image container doesn't trigger the close action */
 .lb-outerContainer,
-.lb-dataContainer,
 .lb-nav {
     cursor: default;
 }
